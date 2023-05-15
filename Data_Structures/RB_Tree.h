@@ -1,17 +1,21 @@
 #ifndef RB_TREE_H
 #define RB_TREE_H
 #include "Node.h"
-class RB_Tree
+template <class T> class RB_Tree
 {
 private:
-    typedef Node* Node_p; // creating node pointer to prevent too much usage of memory
+    typedef Node<T>* Node_p; // creating node pointer to prevent too much usage of memory
 
     Node_p warden;
     Node_p root;
 
-    void initWarden(Node_p node, Node_p parrent); // creating node that is NULL for every leaf
-    void treeBalancingInsert(Node_p node);
-    void rotateRight(Node_p node);
+    void initWarden(); // creating node that is NULL for every leaf
+    void insertFixUp(Node_p node);
+    void rotateRight(Node_p node); // O(1)
     void rotateLeft(Node_p node);
+
+public:
+    RB_Tree();
+    void insert(T data); // O(log n)
 };
 #endif RB_TREE_H

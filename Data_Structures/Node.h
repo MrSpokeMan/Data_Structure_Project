@@ -1,10 +1,12 @@
 #ifndef NODE_H
 #define NODE_H
-class Node
+template <class T> class Node
 {
 public:
-	int data;
-	Node(int data);
+	T data;
+
+	Node(T data) : data(data), parent(nullptr), left(nullptr), right(nullptr), color(0) {};
+
 	Node* parent;
 	Node* left;
 	Node* right;

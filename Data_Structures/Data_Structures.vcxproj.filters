@@ -18,9 +18,6 @@
     <ClCompile Include="Data_Structures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Node.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="RB_Tree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
