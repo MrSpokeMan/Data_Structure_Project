@@ -1,46 +1,55 @@
-#include "RB_Tree.h"
+﻿#include "RB_Tree.h"
+#include <string>
+#include <iostream>
 
 template <typename T> void RB_Tree<T>::initWarden()
 {
-	warden = new Node<T>(0);
+	warden = new Node <T>(T());
 	warden->color = 0;
 	warden->left = nullptr;
 	warden->right = nullptr;
+	warden->parent = nullptr;
 }
 
 template <typename T> void RB_Tree<T>::insertFixUp(Node_p node)
 {
+	typename RB_Tree<T>::Node_p tmpNode;
 	while (node->parent->color == 1) {
-		if (node->parent == node->parent->parent->left) {
-			typename RB_Tree<T>::Node_p tmpNode = node->parent->parent->right;
+		if (node->parent == node->parent->parent->right) {
+			tmpNode = node->parent->parent->left;
 			if (tmpNode->color == 1) {						// case 1
 				node->parent->color = 0;
-				tmpNode->color = 1;
+				tmpNode->color = 0;
+				node->parent->parent->color = 1;
 				node = node->parent->parent;
 			}
-			else if (node == node->parent->right) {			// case 2
+			else {
+				if (node == node->parent->left) {			// case 2
+					node = node->parent;
+					rotateRight(node);
+				}
+				node->parent->color = 0;						// case 3
+				node->parent->parent->color = 1;
+				rotateLeft(node->parent->parent);
+			}
+		}
+		else {
+			tmpNode = node->parent->parent->right;
+			if (tmpNode->color == 1) {
+				node->parent->color = 0;
+				tmpNode->color = 0;
+				node->parent->parent->color = 1;
+				node = node->parent->parent;
+			}
+			else if (node == node->parent->right) {
 				node = node->parent;
 				rotateLeft(node);
 			}
-			node->parent->color = 0;						// case 3
+			node->parent->color = 0;
 			node->parent->parent->color = 1;
 			rotateRight(node->parent->parent);
 		}
-		else {
-			typename RB_Tree<T>::Node_p tmpNode = node->parent->parent->left;
-			if (tmpNode->color == 1) {
-				node->parent->color = 0;
-				tmpNode->color = 1;
-				node = node->parent->parent;
-			}
-			else if (node == node->parent->left) {
-				node = node->parent;
-				rotateRight(node);
-			}
-			node->parent->color = 0;
-			node->parent->parent->color = 1;
-			rotateLeft(node->parent->parent);
-		}
+		if (node == root) { break; }
 	}
 	root->color = 0;
 }
@@ -52,7 +61,7 @@ template <typename T> void RB_Tree<T>::rotateRight(Node_p node)
 	if (tmpNode->right != warden)
 		tmpNode->right->parent = node;
 	tmpNode->parent = node->parent;
-	if (node->parent == warden)
+	if (node->parent == warden->parent)
 		root = tmpNode;
 	else if (node == node->parent->right)
 		node->parent->right = tmpNode;
@@ -68,38 +77,78 @@ template <typename T> void RB_Tree<T>::rotateLeft(Node_p node)
 	if (tmpNode->left != warden) // if left undertree of tmpNode is not warden then change parent ptr of tmpNode to node
 		tmpNode->left->parent = node;
 	tmpNode->parent = node->parent; // parent of tmpNode change to parent of node
-	if (node->parent == warden) // if node is root then change root to tmpNode
+	if (node->parent == warden->parent) // if node is root then change root to tmpNode
 		root = tmpNode;
-	else if (node == node->parent->left) // if node is left child then make tmpNode as a left child
+	else if (node == node->parent->left) // if node is left child then make tmpNode as a left child BŁĄĄĄĄĄĄĄĄĄĄĄD gówno nie przypisuje mi wardena jako ojca roota
 		node->parent->left = tmpNode;
 	else node->parent->right = tmpNode; // and likewise
 	tmpNode->left = node;
 	node->parent = tmpNode;
 }
 
-template <typename T> RB_Tree<T>::RB_Tree() : warden(nullptr), root(nullptr)
+template <typename T> RB_Tree<T>::RB_Tree()
 {
 	initWarden();
+	this->root = this->warden;
+	this->root->parent = this->warden;
 }
 
 template <typename T> void RB_Tree<T>::insert(T data)
 {
 	typename RB_Tree<T>::Node_p tmpWarden = warden;
-	typename RB_Tree<T>::Node_p tmpRoot = root;
-	typename RB_Tree<T>::Node_p newNode = nullptr;
-	while (root != warden) {
+	typename RB_Tree<T>::Node_p tmpRoot = this->root;
+	typename RB_Tree<T>::Node_p newNode = new Node<T>(data);
+	newNode->data = data;
+	newNode->left = warden;
+	newNode->right = warden;
+	newNode->color = 1;
+
+	while (tmpRoot != warden) {
 		tmpWarden = tmpRoot;
-		if (newNode->data < tmpRoot->data)
+		if (newNode->data.value < tmpRoot->data.value)
 			tmpRoot = tmpRoot->left;
 		else tmpRoot = tmpRoot->right;
 	}
+
 	newNode->parent = tmpWarden;
-	if (tmpWarden == warden)
+
+	if (tmpWarden == warden->parent)
 		root = newNode;
-	else if (newNode->data < tmpWarden->data)
+	else if (newNode->data.value < tmpWarden->data.value)
 		tmpWarden->left = newNode;
 	else tmpWarden->right = newNode;
-	newNode->left = newNode->right = warden;
-	newNode->color = 1;
+
+	if (newNode->parent == warden->parent) {
+		newNode->color = 0;
+		return ;
+	}
+
+	if (newNode->parent->parent == warden->parent) { return; }
+	
 	insertFixUp(newNode);
+}
+
+template <typename T> void RB_Tree<T>::show_helper(typename RB_Tree<T>::Node_p root, std::string tabulator, bool visited_last) {
+	if (root != warden) {
+		printf("%s", tabulator.c_str());
+		if (visited_last) {
+			std::cout << "R ---- ";
+			tabulator += "\t";
+		}
+		else {
+			std::cout << "L ---- ";
+			tabulator += "|  ";
+		}
+		std::string node_color = root->color ? "\x1B[31m(r)\033[0m" : "\x1B[90m(b)\033[0m";
+		printf("%d %s\n", root->data.value, node_color.c_str());
+		show_helper(root->left, tabulator, false);
+		show_helper(root->right, tabulator, true);
+	}
+}
+
+template <typename T> void RB_Tree<T>::show() { show_helper(getRoot(), "", true); }
+
+template<typename T> typename RB_Tree<T>::Node_p RB_Tree<T>::getRoot()
+{
+	return this->root;
 }

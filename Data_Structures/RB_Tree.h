@@ -1,6 +1,7 @@
-#ifndef RB_TREE_H
-#define RB_TREE_H
+#pragma once
 #include "Node.h"
+#include <string>
+
 template <class T> class RB_Tree
 {
 private:
@@ -17,5 +18,7 @@ private:
 public:
     RB_Tree();
     void insert(T data); // O(log n)
+    void show_helper(Node_p root, std::string tabulator, bool visited_last);
+    void show();
+    Node_p getRoot();
 };
-#endif RB_TREE_H
