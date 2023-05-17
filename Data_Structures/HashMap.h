@@ -1,0 +1,30 @@
+#pragma once
+
+#include <iostream>
+#include <vector>
+#include <list>
+
+template <typename Key, typename Value>
+class HashMap
+{
+private:
+
+	typedef std::pair<Key, Value> Bucket;
+	typedef std::list<Bucket> BucketList;
+	typedef std::vector<BucketList> BucketArray;
+
+	BucketArray buckets;
+	std::size_t numBuckets;
+
+	std::size_t hash(const Key& key) const;
+
+public:
+
+	HashMap(std::size_t size);
+
+	void insert(const Key& key, const Value& value);
+
+	bool get(const Key& key, Value& value) const;
+
+	bool remove(const Key& key);
+};
