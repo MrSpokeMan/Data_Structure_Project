@@ -140,9 +140,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Data_Structures.cpp" />
+    <ClCompile Include="HashMap.cpp" />
     <ClCompile Include="RB_Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HashMap.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="RB_Tree.h" />
   </ItemGroup>
