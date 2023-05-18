@@ -5,7 +5,7 @@
 #include <list>
 
 template <typename Key, typename Value>
-class HashMap
+class HashTable
 {
 private:
 
@@ -20,7 +20,7 @@ private:
 
 public:
 
-	HashMap(std::size_t size);
+	HashTable(std::size_t size);
 
 	void insert(const Key& key, const Value& value);
 

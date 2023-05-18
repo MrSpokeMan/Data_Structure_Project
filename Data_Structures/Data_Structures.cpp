@@ -2,8 +2,9 @@
 #include<random>
 #include "RB_Tree.h"
 #include "RB_Tree.cpp" // solution for linker problem
+#include "HashTable.h"
+#include "HashTable.cpp"
 #include "HashMap.h"
-#include "HashMap.cpp"
 
 int main()
 {
@@ -12,7 +13,8 @@ int main()
         int value;
     };
 
-    HashMap<std::string, int > myMap(10);
+    HashTable<std::string, int > myTable(10);
+    HashMap<std::string, int> myMap;
 
     std::random_device rd;
     std::mt19937 rng(rd());
@@ -28,6 +30,17 @@ int main()
     myMap.remove("Bas");
     myMap.remove("Banana");
     std::cout << myMap.get("A") << std::endl;
+
+    myTable.insert("Banana", 20);
+    myTable.insert("Banane", 20);
+    myTable.insert("A", 20);
+    myTable.insert("B", 20);
+    myTable.insert("C", 20);
+    std::cout << myTable.get("Banana") << std::endl;
+    std::cout << myTable.get("Bas") << std::endl;
+    myTable.remove("Bas");
+    myTable.remove("Banana");
+    std::cout << myTable.get("A") << std::endl;
 
     RB_Tree<Test> *rbTree = new RB_Tree<Test>;
 
