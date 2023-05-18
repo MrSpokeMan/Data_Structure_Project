@@ -20,7 +20,7 @@ int main()
     std::mt19937 rng(rd());
     std::uniform_int_distribution<int> dist(1, 100);
 
-    myMap.insert("Banana", 20);
+    /*myMap.insert("Banana", 20);
     myMap.insert("Banane", 20);
     myMap.insert("A", 20);
     myMap.insert("B", 20);
@@ -40,23 +40,17 @@ int main()
     std::cout << myTable.get("Bas") << std::endl;
     myTable.remove("Bas");
     myTable.remove("Banana");
-    std::cout << myTable.get("A") << std::endl;
+    std::cout << myTable.get("A") << std::endl;*/
 
     RB_Tree<Test> *rbTree = new RB_Tree<Test>;
 
-    for (int i = 0; i < 50; i++)
+    for (int i = 0; i < 100; i++)
     {
         Test rand;
-        //Test rand1;
         //rand.value = dist(rng);
         rand.value = i;
-        //rand1.value = 13;
         rbTree->insert(rand);
-        /*rand.value = 12;
-        rbTree->insert(rand);
-        rbTree->insert(rand);
-        rand.value = 2;
-        rbTree->insert(rand);*/
     }
     rbTree->show();
+    rbTree->find(36);
 }

@@ -152,3 +152,25 @@ template<typename T> typename RB_Tree<T>::Node_p RB_Tree<T>::getRoot()
 {
 	return this->root;
 }
+
+template<typename T> void RB_Tree<T>::find_helper(Node_p node, int value)
+{
+	if (node->data.value == value) {
+		std::string node_color = node->color ? "\x1B[31m(r)\033[0m" : "\x1B[90m(b)\033[0m";
+		printf("Wezel: %d %s\n", node->data.value, node_color.c_str());
+		std::cout << "Rodzic: " << node->parent->data.value << std::endl;
+		std::cout << "Lewy syn: " << node->left->data.value << std::endl;
+		std::cout << "Prawy syn: " << node->right->data.value << std::endl;
+	}
+	else {
+		if (node->data.value < value)
+			find_helper(node->right, value);
+		else
+			find_helper(node->left, value);
+	}
+}
+
+template <typename T> void RB_Tree<T>::find(int value) {
+
+	find_helper(getRoot(), value);
+}
