@@ -1,5 +1,5 @@
 #include <iostream>
-#include<random>
+#include <random>
 #include "RB_Tree.h"
 #include "RB_Tree.cpp" // solution for linker problem
 #include "HashTable.h"
@@ -18,7 +18,7 @@ int main()
 
     std::random_device rd;
     std::mt19937 rng(rd());
-    std::uniform_int_distribution<int> dist(1, 100);
+    std::uniform_int_distribution<int> dist(1, 10);
 
     /*myMap.insert("Banana", 20);
     myMap.insert("Banane", 20);
@@ -44,13 +44,13 @@ int main()
 
     RB_Tree<Test> *rbTree = new RB_Tree<Test>;
 
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 10; i++)
     {
         Test rand;
-        //rand.value = dist(rng);
-        rand.value = i;
+        rand.value = dist(rng);
+        //rand.value = i;
         rbTree->insert(rand);
     }
     rbTree->show();
-    rbTree->find(36);
+    rbTree->find(9);
 }
