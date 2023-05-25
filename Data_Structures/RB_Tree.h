@@ -20,5 +20,7 @@ public:
     void insert(T data); // O(log n)
     void show_helper(Node_p root, std::string tabulator, bool visited_last);
     void show();
+    void find_helper(Node_p node, int value);
+    void find(int value);
     Node_p getRoot();
 };
