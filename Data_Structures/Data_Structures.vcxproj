@@ -143,12 +143,14 @@
     <ClCompile Include="HashMap.cpp" />
     <ClCompile Include="HashTable.cpp" />
     <ClCompile Include="RB_Tree.cpp" />
+    <ClCompile Include="Upload.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HashMap.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="RB_Tree.h" />
+    <ClInclude Include="Upload.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
