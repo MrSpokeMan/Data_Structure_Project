@@ -3,8 +3,8 @@
 #include "HashTable.h"
 #include "HashTable.cpp"
 #include "HashMap.h"
-#include "Upload.h"
-
+//#include "Upload.h"
+#include <iostream>
 int main()
 {
     // Upload upload = Upload(10);
@@ -20,4 +20,5 @@ int main()
     RB_Tree<Recipes> tree = RB_Tree<Recipes>();
     tree.insert({20, "mama", 1});
     tree.show();
+    std::cout << tree.getSize();
 }

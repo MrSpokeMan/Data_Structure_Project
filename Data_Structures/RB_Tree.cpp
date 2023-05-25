@@ -123,6 +123,7 @@ void RB_Tree<T>::insert(T data)
 	newNode->left = warden;
 	newNode->right = warden;
 	newNode->color = 1;
+	size++;
 
 	while (tmpRoot != warden)
 	{
@@ -153,7 +154,6 @@ void RB_Tree<T>::insert(T data)
 		return;
 	}
 
-	size++;
 	insertFixUp(newNode);
 }
 
@@ -174,7 +174,7 @@ void RB_Tree<T>::show_helper(typename RB_Tree<T>::Node_p root, std::string tabul
 			tabulator += "|  ";
 		}
 		std::string node_color = root->color ? "\x1B[31m(r)\033[0m" : "\x1B[90m(b)\033[0m";
-		printf("%d %s\n%s\n%d", root->data.value, node_color.c_str(), root->data.name, root->data.index);
+		printf("%d %s %s %d", root->data.value, node_color.c_str(), root->data.name.c_str(), root->data.index);
 		show_helper(root->left, tabulator, false);
 		show_helper(root->right, tabulator, true);
 	}
@@ -196,8 +196,7 @@ void RB_Tree<T>::find_helper(Node_p node, int value)
 	{
 		if (node->data.value == value)
 		{
-			std::string node_color = node->color ? "\x1B[31m(r)\033[0m" : "\x1B[90m(b)\033[0m";
-			printf("Wezel: %d %s\n%s\n%d", node->data.value, node_color.c_str(), node->data.name, node->data.index);
+			std::cout << "Wezel: "<< node->data.value << std::endl << node->data.name << std::endl << node->data.index;
 		}
 		else if (node->data.value < value || node->data.value > value)
 		{
@@ -212,13 +211,12 @@ void RB_Tree<T>::find_helper(Node_p node, int value)
 
 	catch (...)
 	{
-		std::cout << "Nie ma węzła z poszukiwaną wartością wartością!\n";
+		std::cout << "Nie ma węzła z poszukiwaną wartością!\n";
 	}
 }
 
 template <typename T>
 void RB_Tree<T>::find(int value)
 {
-
 	find_helper(getRoot(), value);
 }
