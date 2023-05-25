@@ -49,17 +49,9 @@ int main()
     {
         Test rand;
         rand.value = dist(rng);
-        // rand.value = i;
-        // Test rand1;
         rand.value = dist(rng);
-        // rand.value = i;
-        // rand1.value = 13;
         rbTree->insert(rand);
-        /*rand.value = 12;
-        rbTree->insert(rand);
-        rbTree->insert(rand);
-        */
     }
     rbTree->show();
-    rbTree->find(9);
+    //rbTree->find(9);
 }

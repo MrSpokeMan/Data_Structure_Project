@@ -1,1 +1,6 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(439,5): error MSB8020: The build tools for v143 (Platform Toolset = 'v143') cannot be found. To build using the v143 build tools, please install v143 build tools.  Alternatively, you may upgrade to the current Visual Studio tools by selecting the Project menu or right-click the solution, and then selecting "Retarget solution".
+﻿  Data_Structures.cpp
+C:\Users\filip\Desktop\Studia\Semestr_4\SD\Data_Structures\RB_Tree.cpp(218,16): warning C4566: character represented by universal-character-name '\u0119' cannot be represented in the current code page (1252)
+C:\Users\filip\Desktop\Studia\Semestr_4\SD\Data_Structures\RB_Tree.cpp(218,16): warning C4566: character represented by universal-character-name '\u0142' cannot be represented in the current code page (1252)
+C:\Users\filip\Desktop\Studia\Semestr_4\SD\Data_Structures\RB_Tree.cpp(218,16): warning C4566: character represented by universal-character-name '\u0105' cannot be represented in the current code page (1252)
+C:\Users\filip\Desktop\Studia\Semestr_4\SD\Data_Structures\RB_Tree.cpp(218,16): warning C4566: character represented by universal-character-name '\u015B' cannot be represented in the current code page (1252)
+  Data_Structures.vcxproj -> C:\Users\filip\Desktop\Studia\Semestr_4\SD\Data_Structures\x64\Debug\Data_Structures.exe
