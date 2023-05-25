@@ -32,22 +32,22 @@ template <typename T> void RB_Tree<T>::insertFixUp(Node_p node)
 				node->parent->parent->color = 1;
 				rotateLeft(node->parent->parent);
 			}
-		}
-		else {
+		} else {
 			tmpNode = node->parent->parent->right;
 			if (tmpNode->color == 1) {
 				node->parent->color = 0;
 				tmpNode->color = 0;
 				node->parent->parent->color = 1;
 				node = node->parent->parent;
+			} else {
+				if (node == node->parent->right) {
+					node = node->parent;
+					rotateLeft(node);
+				}
+				node->parent->color = 0;
+				node->parent->parent->color = 1;
+				rotateRight(node->parent->parent);
 			}
-			else if (node == node->parent->right) {
-				node = node->parent;
-				rotateLeft(node);
-			}
-			node->parent->color = 0;
-			node->parent->parent->color = 1;
-			rotateRight(node->parent->parent);
 		}
 		if (node == root) { break; }
 	}
@@ -61,8 +61,8 @@ template <typename T> void RB_Tree<T>::rotateRight(Node_p node)
 	if (tmpNode->right != warden)
 		tmpNode->right->parent = node;
 	tmpNode->parent = node->parent;
-	if (node->parent == warden->parent)
-		root = tmpNode;
+	if (node->parent == nullptr)
+		this->root = tmpNode;
 	else if (node == node->parent->right)
 		node->parent->right = tmpNode;
 	else node->parent->left = tmpNode;
@@ -77,9 +77,9 @@ template <typename T> void RB_Tree<T>::rotateLeft(Node_p node)
 	if (tmpNode->left != warden) // if left undertree of tmpNode is not warden then change parent ptr of tmpNode to node
 		tmpNode->left->parent = node;
 	tmpNode->parent = node->parent; // parent of tmpNode change to parent of node
-	if (node->parent == warden->parent) // if node is root then change root to tmpNode
-		root = tmpNode;
-	else if (node == node->parent->left) // if node is left child then make tmpNode as a left child BŁĄĄĄĄĄĄĄĄĄĄĄD gówno nie przypisuje mi wardena jako ojca roota
+	if (node->parent == nullptr) // if node is root then change root to tmpNode
+		this->root = tmpNode;
+	else if (node == node->parent->left) // if node is left child then make tmpNode as a left child
 		node->parent->left = tmpNode;
 	else node->parent->right = tmpNode; // and likewise
 	tmpNode->left = node;
@@ -90,12 +90,11 @@ template <typename T> RB_Tree<T>::RB_Tree()
 {
 	initWarden();
 	this->root = this->warden;
-	this->root->parent = this->warden;
 }
 
 template <typename T> void RB_Tree<T>::insert(T data)
 {
-	typename RB_Tree<T>::Node_p tmpWarden = warden;
+	typename RB_Tree<T>::Node_p tmpWarden = nullptr;
 	typename RB_Tree<T>::Node_p tmpRoot = this->root;
 	typename RB_Tree<T>::Node_p newNode = new Node<T>(data);
 	newNode->data = data;
@@ -112,18 +111,18 @@ template <typename T> void RB_Tree<T>::insert(T data)
 
 	newNode->parent = tmpWarden;
 
-	if (tmpWarden == warden->parent)
+	if (tmpWarden == nullptr)
 		root = newNode;
 	else if (newNode->data.value < tmpWarden->data.value)
 		tmpWarden->left = newNode;
 	else tmpWarden->right = newNode;
 
-	if (newNode->parent == warden->parent) {
+	if (newNode->parent == nullptr) {
 		newNode->color = 0;
 		return ;
 	}
 
-	if (newNode->parent->parent == warden->parent) { return; }
+	if (newNode->parent->parent == nullptr) { return; }
 	
 	insertFixUp(newNode);
 }

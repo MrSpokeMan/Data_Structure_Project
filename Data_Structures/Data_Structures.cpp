@@ -12,16 +12,16 @@ int main()
 
     std::random_device rd;
     std::mt19937 rng(rd());
-    std::uniform_int_distribution<int> dist(1, 100);
+    std::uniform_int_distribution<int> dist(1, 1500);
 
     RB_Tree<Test> *rbTree = new RB_Tree<Test>;
 
-    for (int i = 0; i < 50; i++)
+    for (int i = 0; i < 100; i++)
     {
         Test rand;
         //Test rand1;
-        //rand.value = dist(rng);
-        rand.value = i;
+        rand.value = dist(rng);
+        //rand.value = i;
         //rand1.value = 13;
         rbTree->insert(rand);
         /*rand.value = 12;
