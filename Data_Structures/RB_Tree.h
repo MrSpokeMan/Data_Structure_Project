@@ -1,6 +1,5 @@
 #pragma once
 #include "Node.h"
-#include "Upload.h"
 #include <string>
 
 template <class T>
@@ -30,3 +29,5 @@ public:
     void find(int value);
     Node_p getRoot();
 };
+
+#include "RB_Tree.cpp"

@@ -174,7 +174,7 @@ void RB_Tree<T>::show_helper(typename RB_Tree<T>::Node_p root, std::string tabul
 			tabulator += "|  ";
 		}
 		std::string node_color = root->color ? "\x1B[31m(r)\033[0m" : "\x1B[90m(b)\033[0m";
-		printf("%d %s %s %d", root->data.value, node_color.c_str(), root->data.name.c_str(), root->data.index);
+		printf("%d %s\n", root->data.value, node_color.c_str());
 		show_helper(root->left, tabulator, false);
 		show_helper(root->right, tabulator, true);
 	}
@@ -192,27 +192,20 @@ typename RB_Tree<T>::Node_p RB_Tree<T>::getRoot()
 template <typename T>
 void RB_Tree<T>::find_helper(Node_p node, int value)
 {
-	try
+	if (node->data.value == value)
 	{
-		if (node->data.value == value)
-		{
-			std::cout << "Wezel: "<< node->data.value << std::endl << node->data.name << std::endl << node->data.index;
-		}
-		else if (node->data.value < value || node->data.value > value)
-		{
-			if (node->data.value < value)
-				find_helper(node->right, value);
-			else
-				find_helper(node->left, value);
-		}
+		std::cout << "Wezel: "<< node->data.value << " minut" << std::endl << "Nazwa przepisu: " << node->data.name << std::endl << "Index w bazie: " << node->data.index << std::endl;
+	}
+	else if (node->data.value < value || node->data.value > value)
+	{
+		if (node->data.value < value)
+			find_helper(node->right, value);
 		else
-			throw 505;
+			find_helper(node->left, value);
 	}
+	else
+		std::cout << "Nie ma takiego elementu" << std::endl;
 
-	catch (...)
-	{
-		std::cout << "Nie ma węzła z poszukiwaną wartością!\n";
-	}
 }
 
 template <typename T>
