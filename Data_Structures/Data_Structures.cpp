@@ -1,56 +1,17 @@
-#include <iostream>
-#include <random>
 #include "RB_Tree.h"
-#include "RB_Tree.cpp" // solution for linker problem
 #include "HashTable.h"
 #include "HashTable.cpp"
 #include "HashMap.h"
+#include "Upload.h"
+#include <iostream>
 
 int main()
 {
+     Upload *upload = new Upload(20);
 
-    struct Test {
-        int value;
-    };
+     upload->rbTree->show();
 
-    HashTable<std::string, int > myTable(10);
-    HashMap<std::string, int> myMap;
+     std::cout << "\n";
 
-    std::random_device rd;
-    std::mt19937 rng(rd());
-    std::uniform_int_distribution<int> dist(1, 10);
-
-    /*myMap.insert("Banana", 20);
-    myMap.insert("Banane", 20);
-    myMap.insert("A", 20);
-    myMap.insert("B", 20);
-    myMap.insert("C", 20);
-    std::cout << myMap.get("Banana") << std::endl;
-    std::cout << myMap.get("Bas") << std::endl;
-    myMap.remove("Bas");
-    myMap.remove("Banana");
-    std::cout << myMap.get("A") << std::endl;
-
-    myTable.insert("Banana", 20);
-    myTable.insert("Banane", 20);
-    myTable.insert("A", 20);
-    myTable.insert("B", 20);
-    myTable.insert("C", 20);
-    std::cout << myTable.get("Banana") << std::endl;
-    std::cout << myTable.get("Bas") << std::endl;
-    myTable.remove("Bas");
-    myTable.remove("Banana");
-    std::cout << myTable.get("A") << std::endl;*/
-
-    RB_Tree<Test> *rbTree = new RB_Tree<Test>;
-
-    for (int i = 0; i < 10; i++)
-    {
-        Test rand;
-        rand.value = dist(rng);
-        //rand.value = i;
-        rbTree->insert(rand);
-    }
-    rbTree->show();
-    rbTree->find(9);
+     upload->rbTree->find(30);
 }
