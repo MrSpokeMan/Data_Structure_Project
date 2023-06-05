@@ -7,11 +7,11 @@
 
 int main()
 {
-     Upload *upload = new Upload(0);
+     Upload *upload = new Upload(20);
 
-     //upload->rbTree->show();
+     upload->rbTree->show();
 
      std::cout << "\n";
 
-     upload->rbTree->find(0);
+     upload->rbTree->find(495);
 }
