@@ -42,14 +42,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     <PlatformToolset>v142</PlatformToolset>
-=======
->>>>>>> RB_Tree
-=======
+
     <PlatformToolset>v142</PlatformToolset>
->>>>>>> RB_Tree
+
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
