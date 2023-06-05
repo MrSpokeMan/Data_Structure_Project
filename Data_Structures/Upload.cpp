@@ -20,8 +20,8 @@ void Upload::dataFromFile()
 		std::getline(file, line);
 		while (std::getline(file, line))
 		{
-			if (rbTree->getSize() >= size)
-				break;
+			if (size != 0)
+				if (rbTree->getSize() >= size) break;
 
 			std::stringstream ss(line);
 			std::string name, idStr, minutesStr;
