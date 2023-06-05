@@ -62,10 +62,7 @@ void RB_Tree<T>::insertFixUp(Node_p node)
 				rotateRight(node->parent->parent);
 			}
 		}
-<<<<<<< HEAD
 
-=======
->>>>>>> RB_Tree
 		if (node == root)
 		{
 			break;
