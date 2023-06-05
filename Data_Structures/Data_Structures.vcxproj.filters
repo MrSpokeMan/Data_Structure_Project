@@ -18,16 +18,10 @@
     <ClCompile Include="Data_Structures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RB_Tree.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="HashMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HashTable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Upload.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
