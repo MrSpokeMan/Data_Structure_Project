@@ -196,47 +196,21 @@ typename RB_Tree<T>::Node_p RB_Tree<T>::getRoot()
 template <typename T>
 void RB_Tree<T>::find_helper(Node_p node, int value)
 {
-<<<<<<< HEAD
-	try
-	{
-		if (node->data.value == value)
-		{
-			std::string node_color = node->color ? "\x1B[31m(r)\033[0m" : "\x1B[90m(b)\033[0m";
-			printf("Wezel: %d %s\n", node->data.value, node_color.c_str());
-			std::cout << "Rodzic: " << node->parent->data.value << std::endl;
-			std::cout << "Lewy syn: " << node->left->data.value << std::endl;
-			std::cout << "Prawy syn: " << node->right->data.value << std::endl;
-		}
-		else if (node->data.value < value || node->data.value > value)
-		{
-			if (node->data.value < value)
-				find_helper(node->right, value);
-			else
-				find_helper(node->left, value);
-		}
-=======
 	if (node->data.value == value)
 	{
-		std::cout << "Wezel: "<< node->data.value << " minut" << std::endl << "Nazwa przepisu: " << node->data.name << std::endl << "Index w bazie: " << node->data.index << std::endl;
+		std::cout << "Wezel: " << node->data.value << " minut" << std::endl
+				  << "Nazwa przepisu: " << node->data.name << std::endl
+				  << "Index w bazie: " << node->data.index << std::endl;
 	}
 	else if (node->data.value < value || node->data.value > value)
 	{
 		if (node->data.value < value)
 			find_helper(node->right, value);
->>>>>>> RB_Tree
 		else
 			find_helper(node->left, value);
 	}
 	else
 		std::cout << "Nie ma takiego elementu" << std::endl;
-
-<<<<<<< HEAD
-	catch (...)
-	{
-		std::cout << "Nie ma węzła z poszukiwaną wartością wartością!\n";
-	}
-=======
->>>>>>> RB_Tree
 }
 
 template <typename T>
