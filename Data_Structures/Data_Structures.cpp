@@ -13,5 +13,5 @@ int main()
 
      std::cout << "\n";
 
-     upload->rbTree->find(135);
+     upload->rbTree->find(0);
 }
