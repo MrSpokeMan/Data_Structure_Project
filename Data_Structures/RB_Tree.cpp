@@ -62,7 +62,10 @@ void RB_Tree<T>::insertFixUp(Node_p node)
 				rotateRight(node->parent->parent);
 			}
 		}
+<<<<<<< HEAD
 
+=======
+>>>>>>> RB_Tree
 		if (node == root)
 		{
 			break;
@@ -124,6 +127,7 @@ void RB_Tree<T>::insert(T data)
 	newNode->left = warden;
 	newNode->right = warden;
 	newNode->color = 1;
+	size++;
 
 	while (tmpRoot != warden)
 	{
@@ -192,6 +196,7 @@ typename RB_Tree<T>::Node_p RB_Tree<T>::getRoot()
 template <typename T>
 void RB_Tree<T>::find_helper(Node_p node, int value)
 {
+<<<<<<< HEAD
 	try
 	{
 		if (node->data.value == value)
@@ -209,14 +214,29 @@ void RB_Tree<T>::find_helper(Node_p node, int value)
 			else
 				find_helper(node->left, value);
 		}
-		else
-			throw 505;
+=======
+	if (node->data.value == value)
+	{
+		std::cout << "Wezel: "<< node->data.value << " minut" << std::endl << "Nazwa przepisu: " << node->data.name << std::endl << "Index w bazie: " << node->data.index << std::endl;
 	}
+	else if (node->data.value < value || node->data.value > value)
+	{
+		if (node->data.value < value)
+			find_helper(node->right, value);
+>>>>>>> RB_Tree
+		else
+			find_helper(node->left, value);
+	}
+	else
+		std::cout << "Nie ma takiego elementu" << std::endl;
 
+<<<<<<< HEAD
 	catch (...)
 	{
 		std::cout << "Nie ma węzła z poszukiwaną wartością wartością!\n";
 	}
+=======
+>>>>>>> RB_Tree
 }
 
 template <typename T>

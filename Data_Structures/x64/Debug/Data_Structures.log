@@ -1,6 +1,9 @@
 ﻿  Data_Structures.cpp
+<<<<<<< HEAD
 C:\Users\filip\Desktop\Studia\Semestr_4\SD\Data_Structures\RB_Tree.cpp(218,16): warning C4566: character represented by universal-character-name '\u0119' cannot be represented in the current code page (1252)
 C:\Users\filip\Desktop\Studia\Semestr_4\SD\Data_Structures\RB_Tree.cpp(218,16): warning C4566: character represented by universal-character-name '\u0142' cannot be represented in the current code page (1252)
 C:\Users\filip\Desktop\Studia\Semestr_4\SD\Data_Structures\RB_Tree.cpp(218,16): warning C4566: character represented by universal-character-name '\u0105' cannot be represented in the current code page (1252)
 C:\Users\filip\Desktop\Studia\Semestr_4\SD\Data_Structures\RB_Tree.cpp(218,16): warning C4566: character represented by universal-character-name '\u015B' cannot be represented in the current code page (1252)
+=======
+>>>>>>> RB_Tree
   Data_Structures.vcxproj -> C:\Users\filip\Desktop\Studia\Semestr_4\SD\Data_Structures\x64\Debug\Data_Structures.exe

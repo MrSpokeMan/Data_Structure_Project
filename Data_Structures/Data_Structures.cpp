@@ -1,14 +1,15 @@
-#include <iostream>
-#include <random>
 #include "RB_Tree.h"
-#include "RB_Tree.cpp" // solution for linker problem
 #include "HashTable.h"
 #include "HashTable.cpp"
 #include "HashMap.h"
+#include "Upload.h"
+#include <iostream>
 
 int main()
 {
+     Upload *upload = new Upload(0);
 
+<<<<<<< HEAD
     struct Test
     {
         int value;
@@ -54,4 +55,11 @@ int main()
     }
     rbTree->show();
     //rbTree->find(9);
+=======
+     // upload->rbTree->show();
+
+     std::cout << "\n";
+
+     upload->rbTree->find(20);
+>>>>>>> RB_Tree
 }

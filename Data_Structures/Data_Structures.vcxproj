@@ -42,8 +42,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
+<<<<<<< HEAD
     <PlatformToolset>v142</PlatformToolset>
+=======
+>>>>>>> RB_Tree
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -142,13 +146,13 @@
     <ClCompile Include="Data_Structures.cpp" />
     <ClCompile Include="HashMap.cpp" />
     <ClCompile Include="HashTable.cpp" />
-    <ClCompile Include="RB_Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HashMap.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="RB_Tree.h" />
+    <ClInclude Include="Upload.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
