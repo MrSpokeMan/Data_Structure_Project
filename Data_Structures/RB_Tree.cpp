@@ -201,10 +201,14 @@ void RB_Tree<T>::find_helper(Node_p node, int value)
 	if (node->data.value == value) {
 		std::cout << "Wezel: " << node->data.value << " minut" << std::endl << "Nazwa przepisu: " << node->data.name << std::endl << "Index w bazie: " << node->data.index << std::endl;
 		std::cout << "\n";
-		if (node->left->data.value == value)
+		if (node->left->data.value == value && node->right->data.value == value) {
 			find_helper(node->left, value);
+			find_helper(node->right, value);
+		} 
 		else if (node->right->data.value == value)
 			find_helper(node->right, value);
+		else if (node->left->data.value == value)
+			find_helper(node->left, value);
 	}
 	else if (node->data.value < value || node->data.value > value)
 	{
