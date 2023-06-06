@@ -29,6 +29,7 @@ public:
     void insert(const Key& key, const Value& value);
     void remove(const Key& key);
     Value get(const Key& key) const;
+    void get_show(const Key& key);
     bool contains(const Key& key) const;
     std::size_t getSize() const;
 };

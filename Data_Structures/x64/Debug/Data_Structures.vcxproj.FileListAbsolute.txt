@@ -2,3 +2,4 @@ D:\C++\Projekt_struktury\Data_Structure_Project\Data_Structures\x64\Debug\Data_S
 C:\Users\filip\Desktop\SD1\Data_Structures\x64\Debug\Data_Structures.exe
 C:\Users\filip\Desktop\Studia\Semestr_4\SD\Data_Structures\x64\Debug\Data_Structures.exe
 C:\Users\filip\Desktop\Studia\Semestr_4\SD\Data_Structure_Project\Data_Structures\x64\Debug\Data_Structures.exe
+D:\C++\Projekt_struktury\Data_Structure_Project\Data_Structure_Project\Data_Structures\x64\Debug\Data_Structures.exe
