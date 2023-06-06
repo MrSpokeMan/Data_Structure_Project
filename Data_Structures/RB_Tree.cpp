@@ -193,9 +193,18 @@ typename RB_Tree<T>::Node_p RB_Tree<T>::getRoot()
 template <typename T>
 void RB_Tree<T>::find_helper(Node_p node, int value)
 {
-	if (!(node->data.value == value))
+	if (node == nullptr)
 	{
 		std::cout << "Nie ma takiego elementu" << std::endl;
+	}
+
+	if (node->data.value == value) {
+		std::cout << "Wezel: " << node->data.value << " minut" << std::endl << "Nazwa przepisu: " << node->data.name << std::endl << "Index w bazie: " << node->data.index << std::endl;
+		std::cout << "\n";
+		if (node->left->data.value == value)
+			find_helper(node->left, value);
+		else if (node->right->data.value == value)
+			find_helper(node->right, value);
 	}
 	else if (node->data.value < value || node->data.value > value)
 	{
@@ -204,9 +213,6 @@ void RB_Tree<T>::find_helper(Node_p node, int value)
 		else
 			find_helper(node->left, value);
 	}
-	else
-		std::cout << "Wezel: " << node->data.value << " minut" << std::endl << "Nazwa przepisu: " << node->data.name << std::endl << "Index w bazie: " << node->data.index << std::endl;
-
 }
 
 template <typename T>
