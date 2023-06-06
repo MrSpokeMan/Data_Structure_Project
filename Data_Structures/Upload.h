@@ -2,6 +2,7 @@
 #include <string>
 #include "RB_Tree.h"
 #include "HashMap.h"
+#include "HashTable.h"
 
 struct Recipes
 {
@@ -19,6 +20,7 @@ protected:
 public:
 	RB_Tree<Recipes>* rbTree = new RB_Tree<Recipes>;
 	HashMap<std::string, Recipes> hashMap;
+	HashTable<std::string, Recipes>* hashTable ;
 
 	Upload(int size, std::string structure_choice);//, std::string structure_choice);
 

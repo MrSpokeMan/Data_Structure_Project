@@ -1,10 +1,17 @@
 #include "HashTable.h"
 
-template <typename Key, typename Value>
-std::size_t HashTable<Key, Value>::hash(const Key& key) const 
-{
-	std::hash<Key> hasher;
-	return hasher(key) % numBuckets;
+template<typename Key, typename Value>
+std::size_t HashTable<Key, Value>::hash(const Key& key) const {
+    // Preprocess the key by removing whitespace characters
+    std::string processedKey;
+    for (const auto& c : key) {
+        if (!std::isspace(static_cast<unsigned char>(c))) {
+            processedKey += c;
+        }
+    }
+
+    std::hash<std::string> hasher;
+    return hasher(processedKey) % numBuckets;
 }
 
 template <typename Key, typename Value>

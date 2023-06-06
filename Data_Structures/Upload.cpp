@@ -2,10 +2,9 @@
 #include <fstream>
 #include <sstream>
 
-Upload::Upload(int size, std::string structure_choice)
+Upload::Upload(int size, std::string structure_choice) : size(size), structure_choice(structure_choice)
 {
 	this->size = size;
-	this->structure_choice = structure_choice;
 	dataFromFile();
 }
 
@@ -21,6 +20,7 @@ void Upload::dataFromFile()
 		std::getline(file, line);
 		if (structure_choice == "tree")
 		{
+			rbTree = new RB_Tree<Recipes>;
 			while (std::getline(file, line))
 			{
 				if (size != 0)
@@ -61,6 +61,43 @@ void Upload::dataFromFile()
 
 					hashMap.insert(recipes.name, recipes);
 				}
+			}
+		}
+		if (structure_choice == "HashTable")
+		{
+			if (size == 0)
+			{
+				// Calculate the size based on the number of entries in the file
+				size = 0;
+				while (std::getline(file, line))
+				{
+					size++;
+				}
+				file.clear();    // Reset the file stream
+				file.seekg(0);   // Move the file pointer back to the beginning
+				std::getline(file, line);  // Skip the header line
+			}
+			hashTable = new HashTable<std::string, Recipes>(size);
+			while (std::getline(file, line))
+			{
+				if (size == 0)
+					break;
+
+				std::stringstream ss(line);
+				std::string name, idStr, minutesStr;
+
+				// Extract name, id, and minutes from the line
+				if (std::getline(ss, name, ',') && std::getline(ss, idStr, ',') && std::getline(ss, minutesStr, ','))
+				{
+					Recipes recipes;
+					recipes.name = name;
+					recipes.index = std::stoi(idStr);
+					recipes.value = std::stoi(minutesStr);
+
+					hashTable->insert(recipes.name, recipes);
+				}
+				size--;
+
 			}
 		}
 	}
