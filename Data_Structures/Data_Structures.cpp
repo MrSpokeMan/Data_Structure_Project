@@ -94,6 +94,9 @@ int main()
 
 
     Upload* upload = new Upload(0, "tree");
-    std::vector<typename RB_Tree<Recipes>::Node_p> result = upload->findInTree(105);
-    std::cout << "Job done" << std::endl;
+    
+    int height = upload->rbTree->height();
+    upload->rbTree->show();
+    /*std::vector<typename RB_Tree<Recipes>::Node_p> result = upload->findInTree(105);*/
+    std::cout << "Job done : "<< height << std::endl;
 }

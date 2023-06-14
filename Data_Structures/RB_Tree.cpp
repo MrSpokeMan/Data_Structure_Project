@@ -1,6 +1,7 @@
 ﻿#include "RB_Tree.h"
 #include <string>
 #include <iostream>
+#include <queue>
 
 template <typename T>
 void RB_Tree<T>::initWarden()
@@ -182,7 +183,9 @@ void RB_Tree<T>::show_helper(typename RB_Tree<T>::Node_p root, std::string tabul
 }
 
 template <typename T>
-void RB_Tree<T>::show() { show_helper(getRoot(), "", true); }
+void RB_Tree<T>::show() { 
+	show_helper(getRoot(), "", true);
+}
 
 template <typename T>
 typename RB_Tree<T>::Node_p RB_Tree<T>::getRoot()
@@ -197,6 +200,8 @@ std::vector<typename RB_Tree<T>::Node_p> RB_Tree<T>::find_helper(typename RB_Tre
 	{
 		return result;
 	}
+
+	depth++;
 
 	if (node->data.value == value) {
 		result.push_back(node);
@@ -227,4 +232,52 @@ std::vector<typename RB_Tree<T>::Node_p> RB_Tree<T>::find(int value)
 	std::vector<typename RB_Tree<T>::Node_p> result;
 	result = find_helper(getRoot(), value, result);
 	return result;
+}
+
+//template <typename T>
+//std::vector<typename RB_Tree<T>::Node_p> RB_Tree<T>::findElementsOnDepth(int depth)
+//{
+//    std::vector<typename RB_Tree<T>::Node_p> result;
+//    if (root == nullptr)
+//        return result;
+//
+//    std::queue<std::pair<Node_p, int>> queue;
+//    queue.push(std::make_pair(root, 0));
+//
+//    while (!queue.empty())
+//    {
+//        Node_p current = queue.front().first;
+//        int currentDepth = queue.front().second;
+//        queue.pop();
+//
+//        if (currentDepth == depth)
+//            result.push_back(current->data);
+//
+//        if (current->left != nullptr)
+//            queue.push(std::make_pair(current->left, currentDepth + 1));
+//
+//        if (current->right != nullptr)
+//            queue.push(std::make_pair(current->right, currentDepth + 1));
+//    }
+//
+//    return result;
+//}
+
+template <typename T>
+int RB_Tree<T>::height_helper(Node_p node)
+{
+	if (node == nullptr)
+		return 0;
+
+	int left_height = height_helper(node->left);
+	int right_height = height_helper(node->right);
+
+	return std::max(left_height, right_height) + 1;
+}
+
+template <typename T>
+int RB_Tree<T>::height()
+{
+	depth = height_helper(root);
+	return depth;
 }

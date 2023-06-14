@@ -24,12 +24,17 @@ private:
 public:
     RB_Tree();
 
+    int depth = 0;
+
     int getSize() { return size; }
     void insert(T data); // O(log n)
     void show_helper(Node_p root, std::string tabulator, bool visited_last);
     void show();
     std::vector<Node_p> find_helper(Node_p node, int value, std::vector<Node_p> result);
     std::vector<Node_p> find(int value);
+    int height_helper(Node_p node);
+    int height();
+    //std::vector<Node_p> findElementsOnDepth(int depth);
     Node_p getRoot();
 };
 
