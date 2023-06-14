@@ -104,3 +104,8 @@ void Upload::dataFromFile()
 
 	file.close();
 }
+
+std::vector<typename RB_Tree<Recipes>::Node_p> Upload::findInTree(int value)
+{
+	return rbTree->find(value);
+}

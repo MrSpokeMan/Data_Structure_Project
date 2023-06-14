@@ -191,36 +191,40 @@ typename RB_Tree<T>::Node_p RB_Tree<T>::getRoot()
 }
 
 template <typename T>
-void RB_Tree<T>::find_helper(Node_p node, int value)
+std::vector<typename RB_Tree<T>::Node_p> RB_Tree<T>::find_helper(typename RB_Tree<T>::Node_p node, int value, std::vector<typename RB_Tree<T>::Node_p> result)
 {
 	if (node == nullptr)
 	{
-		std::cout << "Nie ma takiego elementu" << std::endl;
+		return result;
 	}
 
 	if (node->data.value == value) {
-		std::cout << "Wezel: " << node->data.value << " minut" << std::endl << "Nazwa przepisu: " << node->data.name << std::endl << "Index w bazie: " << node->data.index << std::endl;
-		std::cout << "\n";
+		result.push_back(node);
+
 		if (node->left->data.value == value && node->right->data.value == value) {
-			find_helper(node->left, value);
-			find_helper(node->right, value);
-		} 
+			result = find_helper(node->left, value, result);
+			result = find_helper(node->right, value, result);
+		}
 		else if (node->right->data.value == value)
-			find_helper(node->right, value);
+			result = find_helper(node->right, value, result);
 		else if (node->left->data.value == value)
-			find_helper(node->left, value);
+			result = find_helper(node->left, value, result);
 	}
 	else if (node->data.value < value || node->data.value > value)
 	{
 		if (node->data.value < value)
-			find_helper(node->right, value);
+			result = find_helper(node->right, value, result);
 		else
-			find_helper(node->left, value);
+			result = find_helper(node->left, value, result);
 	}
+
+	return result;
 }
 
 template <typename T>
-void RB_Tree<T>::find(int value)
+std::vector<typename RB_Tree<T>::Node_p> RB_Tree<T>::find(int value)
 {
-	find_helper(getRoot(), value);
+	std::vector<typename RB_Tree<T>::Node_p> result;
+	result = find_helper(getRoot(), value, result);
+	return result;
 }

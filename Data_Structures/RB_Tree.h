@@ -1,10 +1,13 @@
 #pragma once
 #include "Node.h"
 #include <string>
+#include <vector>
 
 template <class T>
 class RB_Tree
 {
+public:
+    using Node_p = Node<T>*;
 private:
     typedef Node<T> *Node_p; // creating node pointer to prevent too much usage of memory
 
@@ -25,8 +28,8 @@ public:
     void insert(T data); // O(log n)
     void show_helper(Node_p root, std::string tabulator, bool visited_last);
     void show();
-    void find_helper(Node_p node, int value);
-    void find(int value);
+    std::vector<Node_p> find_helper(Node_p node, int value, std::vector<Node_p> result);
+    std::vector<Node_p> find(int value);
     Node_p getRoot();
 };
 

@@ -25,6 +25,7 @@ public:
 	Upload(int size, std::string structure_choice);//, std::string structure_choice);
 
 	void dataFromFile();
+	std::vector<typename RB_Tree<Recipes>::Node_p> findInTree(int value);
 };
 
 #include "Upload.cpp"
