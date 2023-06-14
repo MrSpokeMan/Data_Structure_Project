@@ -5,23 +5,81 @@
 #include "Upload.h"
 #include "time_measure.h"
 #include <iostream>
+#include <fstream>
 
+void saveVariableToFile(const double & variable, const int& count, const std::string& filePath)
+{
+    std::ofstream file(filePath, std::ios::app);
+    if (file.is_open()) {
+        file << count << "," << variable << "\n";
+        file.close();
+    }
+}
+
+std::string* loadFirstColumnFromCSV(const std::string& filePath, int numElements) {
+    std::ifstream file(filePath);
+    if (file.is_open()) {
+        std::string line;
+        std::string* firstColumn = new std::string[numElements+1];
+
+        for (int i = 0; i < numElements+1; ++i) {
+            if (!std::getline(file, line)) {
+                std::cout << "File does not have enough lines." << std::endl;
+                delete[] firstColumn;
+                return nullptr;
+            }
+
+            std::istringstream iss(line);
+            std::getline(iss, firstColumn[i], ',');
+        }
+
+        file.close();
+        std::cout << "First column loaded from file successfully." << std::endl;
+        return firstColumn;
+    }
+    else {
+        std::cout << "Unable to open file for reading." << std::endl;
+        return nullptr;
+    }
+}
 int main()
 {
-    /*double start, end;*/
-    Upload *upload = new Upload(0, "tree");
-
-
+    
+    int maxim = 231637;
+    int number_elements = 100;
+    double start, end, time;
+    std::string* firstColumn = loadFirstColumnFromCSV("recipes.csv", number_elements);
     //start = get_wall_time();
-    //Upload upload_hash = Upload(10000, "HashMap");
+    //Upload *upload = new Upload(0, "tree");
     //end = get_wall_time();
 
-    /*start = get_wall_time();
-    Upload *upload_table = new Upload(0, "HashTable");
-    end = get_wall_time();*/
+    /*
+    start = get_wall_time();
+    Upload upload_hash = Upload(number_elements, "HashMap");
+    end = get_wall_time();
+
+    start = get_wall_time();
+    for (int i = 1; i < number_elements+1; i++)
+    {
+        //upload_hash.hashMap.remove(firstColumn[i]);
+        Recipes zmienna = upload_hash.hashMap.get(firstColumn[i]);
+    }
+    end = get_wall_time();
+    */
+
+
+    start = get_wall_time();
+    Upload *upload_table = new Upload(number_elements, "HashTable");
+    end = get_wall_time();
+    start = get_wall_time();
+    for (int i = 1; i < number_elements + 1; i++)
+    {
+        //upload_table->hashTable->remove(firstColumn[i]);
+        //Recipes zmienna = upload_table ->hashTable ->get(firstColumn[i]);
+    }
+    end = get_wall_time();
     //upload->rbTree->show();
 
-    //Recipes zmienna = upload_hash.hashMap.get("20 000 prize winning chili con carne");
 
     
     /*Recipes zmienna =  upload_table->hashTable->get("20 000 prize winning chili con carne");
@@ -29,5 +87,8 @@ int main()
     std::cout << zmienna.name << zmienna.index << std::endl;
     std::cout << end - start << std::endl;*/
 
-    upload->rbTree->find(105);
+    //upload->rbTree->find(105);
+    time = end - start;
+
+    saveVariableToFile(time,number_elements, "table_insert.txt");
 }
